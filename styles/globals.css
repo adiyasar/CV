@@ -33,3 +33,9 @@ a {
     background: white;
   }
 }
+
+select,
+input,
+textarea {
+  @apply bg-white rounded border p-2 outline-none ring-yellow-300 focus:ring;
+}

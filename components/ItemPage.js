@@ -5,7 +5,7 @@ import React from 'react';
 export default function ItemPage({ item }) {
   return (
     <div className="card">
-      <Link href={`/product/${item.slug}`}>
+      <Link href={`/item/${item.slug}`}>
         <img
           src={item.image}
           alt={item.name}
@@ -13,11 +13,11 @@ export default function ItemPage({ item }) {
         />
       </Link>
       <div className="flex flex-col items-center justify-center p-5">
-        <Link href={`/product/${item.slug}`}>
+        <Link href={`/item/${item.slug}`}>
           <h2 className="text-lg">{item.name}</h2>
         </Link>
         <p className="mb-2">{item.brand}</p>
-        <p>${item.price}</p>
+        <p>₸{item.price}</p>
         <button className="primary-button" type="button">
           Add to cart
         </button>

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Shop } from '../utils/Shop';
 
 export default function Main_Layout({ title, children }) {
+  const { state } = useContext(Shop);
+  const { cart } = state;
+  const [countCartItems, setCountCartItems] = useState(0);
+  useEffect(() => {
+    setCountCartItems(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, []);
   return (
     <>
       <Head>
@@ -17,10 +24,15 @@ export default function Main_Layout({ title, children }) {
               NU Marketplace
             </Link>
             <div>
-              <Link href="/cart" className="p-2">
+              <Link href="/shopping_cart" className="p-2">
                 Shopping Cart
+                {countCartItems > 0 && (
+                  <span className="ml-2 bg-yellow-400 px-2 py-1 text-xs text-white font-normal  rounded-full">
+                    {countCartItems}
+                  </span>
+                )}
               </Link>
-              <Link href="/login" className="p-2">
+              <Link href="/user_login" className="p-2">
                 Login
               </Link>
             </div>
