@@ -5,6 +5,8 @@ import { Shop } from '../utils/Shop';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function ShoppingCart() {
   const { state, dispatch } = useContext(Shop);
@@ -15,9 +17,14 @@ function ShoppingCart() {
   const deleteItem = (item) => {
     dispatch({ type: 'DELETE_ITEM', payload: item });
   };
-  const updateCartValue = (item, qty) => {
+  const updateCartValue = async (item, qty) => {
     const quantity = Number(qty);
+    const { data } = await axios.get(`/api/items/${item._id}`);
+    if (data.countInStock < quantity) {
+      return toast.error('Error. Out of stock');
+    }
     dispatch({ type: 'ADD_ITEM', payload: { ...item, quantity } });
+    toast.success('Added to cart');
   };
   return (
     <Main_Layout title="Shopping_Cart">
@@ -93,7 +100,9 @@ function ShoppingCart() {
               </li>
               <li>
                 <button
-                  onClick={() => router.push('user_login?redirect=/payment')}
+                  onClick={() =>
+                    router.push('user_login?redirect=/order_screen')
+                  }
                   className="primary-button w-full"
                 >
                   Check Out
