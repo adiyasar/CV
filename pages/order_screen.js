@@ -8,7 +8,12 @@ import { Shop } from '../utils/Shop';
 
 export default function OrderScreen() {
   const { state, dispatch } = useContext(Shop);
-  const { handleSubmit, register, setValue } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    setValue,
+  } = useForm();
   const { cart } = state;
   const { deliveryAddress } = cart;
   const router = useRouter();
@@ -24,7 +29,7 @@ export default function OrderScreen() {
       payload: { recipient, block, room },
     });
     Cookies.set(
-      'cart',
+      'cart-items',
       JSON.stringify({
         ...cart,
         deliveryAddress: {
@@ -50,8 +55,13 @@ export default function OrderScreen() {
             className="w-full"
             id="recipient"
             autoFocus
-            {...register('recipient')}
+            {...register('recipient', {
+              required: 'Please enter recipient name',
+            })}
           />
+          {errors.recipient && (
+            <div className="text-red-500">{errors.recipient.message}</div>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="Block:">Block (For example, D10):</label>
@@ -59,8 +69,17 @@ export default function OrderScreen() {
             className="w-full"
             id="block"
             autoFocus
-            {...register('block')}
+            {...register('block', {
+              required: 'Please enter block number',
+              minLength: {
+                value: 2,
+                message: 'Block number should be more than 1 chars',
+              },
+            })}
           />
+          {errors.block && (
+            <div className="text-red-500 ">{errors.block.message}</div>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="Room:">Room</label>
@@ -70,8 +89,17 @@ export default function OrderScreen() {
             id="room"
             min="0"
             step="1"
-            {...register('room')}
+            {...register('room', {
+              required: 'Please enter room number',
+              minLength: {
+                value: 3,
+                message: 'Room number should be at least 3 digits',
+              },
+            })}
           />
+          {errors.room && (
+            <div className="text-red-500">{errors.room.message}</div>
+          )}
         </div>
         <div className="mb-4 flex justify-between">
           <button className="primary-button">Next</button>

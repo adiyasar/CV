@@ -11,12 +11,11 @@ body {
 }
 
 :link {
-  @apply text-blue-500 hover:text-blue-900;
+  @apply text-blue-400 hover:text-blue-900;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.link {
+  @apply text-blue-600 hover:text-blue-800;
 }
 
 * {
@@ -58,4 +57,11 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
   -moz-appearance: textfield;
+}
+.error {
+  @apply my-3 rounded-lg bg-red-100 p-3 text-red-700;
+}
+
+.success {
+  @apply my-3 rounded-lg bg-green-100 p-3 text-green-700;
 }

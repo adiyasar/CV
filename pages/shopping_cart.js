@@ -31,7 +31,10 @@ function ShoppingCart() {
       <h1 className="mb-4 text-xl">Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <div>
-          Empty Cart <Link href="/">Go back to shopping</Link>
+          Empty Cart{' '}
+          <Link className="link" href="/">
+            Go back to shopping
+          </Link>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">

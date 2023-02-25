@@ -22,14 +22,14 @@ export default function Checkout() {
     }
     dispatch({ type: 'SAVE_CHECKOUT', payload: selectedPaymentMethod });
     Cookies.set(
-      'cart',
+      'cart-items',
       JSON.stringify({
         ...cart,
         paymentMethod: selectedPaymentMethod,
       })
     );
 
-    router.push('/placeorder');
+    router.push('/createorder');
   };
   useEffect(() => {
     setSelectedPaymentMethod(paymentMethod || '');
@@ -58,9 +58,9 @@ export default function Checkout() {
         ))}
         <div className="mb-4 flex justify-between">
           <button
-            onClick={() => router.push('/shipping')}
+            onClick={() => router.push('/order_screen')}
             type="button"
-            className="default-button"
+            className="def-button"
           >
             Back
           </button>

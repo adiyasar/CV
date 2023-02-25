@@ -52,18 +52,17 @@ export default function Login() {
           <input
             type="email"
             {...register('email', {
-              required: 'The field is empty.',
+              required: 'Please enter email',
               pattern: {
-                value: /^[a-zA-Z0-9_.+-]+@nu.edu.kz+$/i,
-                message: 'Wrong email format',
+                value: /^[a-zA-Z0-9_.+-]+@nu+.edu+.kz+$/i,
+                message: 'Please enter a valid email',
               },
             })}
-            autoFocus
-            className="w-full "
+            className="w-full"
             id="email"
           ></input>
           {errors.email && (
-            <div className="text-red-600">{errors.email.message}</div>
+            <div className="text-red-500">{errors.email.message}</div>
           )}
         </div>
         <div className="mb-4">
@@ -89,7 +88,15 @@ export default function Login() {
           <button className="primary-button">Login</button>
         </div>
         <div className="mb-4">
-          <Link href="registration">Create Account</Link>
+          <div className="mb-4 ">
+            Don&apos;t have an account? &nbsp;
+            <Link
+              className="link"
+              href={`/user_register?redirect=${redirect || '/'}`}
+            >
+              Register
+            </Link>
+          </div>
         </div>
       </form>
     </Main_Layout>
