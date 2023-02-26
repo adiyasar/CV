@@ -16,7 +16,7 @@ export default function ItemPage({ item, addToCart }) {
         <Link href={`/item/${item.slug}`}>
           <h2 className="text-lg">{item.name}</h2>
         </Link>
-        <p className="mb-2">{item.brand}</p>
+        <p className="mb-2">{item.seller}</p>
         <p>₸{item.price}</p>
         <button
           className="primary-button"

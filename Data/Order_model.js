@@ -17,6 +17,7 @@ const orderSchema = new mongoose.Schema(
       room: { type: Number, required: true },
     },
     paymentMethod: { type: String, required: true },
+    paymentStatus: { id: String, status: String, email_address: String },
     itemsPrice: { type: Number, required: true },
     deliveryPrice: { type: Number, required: true },
     totalPrice: { type: Number, required: true },

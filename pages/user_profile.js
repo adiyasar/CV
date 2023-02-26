@@ -1,43 +1,40 @@
 import axios from 'axios';
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Main_Layout from '../components/Main_Layout';
 import { getError } from '../utils/handle_error';
 
-export default function RegisterPage() {
+export default function UserProfile() {
   const { data: session } = useSession();
-
-  const router = useRouter();
-  const { redirect } = router.query;
-
-  useEffect(() => {
-    if (session?.user) {
-      router.push(redirect || '/');
-    }
-  }, [router, session, redirect]);
 
   const {
     handleSubmit,
     register,
     getValues,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    setValue('name', session.user.name);
+    setValue('email', session.user.email);
+  }, [session.user, setValue]);
+
   const submitHandler = async ({ name, email, password }) => {
     try {
-      await axios.post('/api/auth/register', {
+      await axios.put('/api/auth/profile_reset', {
         name,
         email,
         password,
       });
-
       const result = await signIn('credentials', {
         redirect: false,
         email,
         password,
       });
+      toast.success('Changes were successfully saved');
       if (result.error) {
         toast.error(result.error);
       }
@@ -45,13 +42,15 @@ export default function RegisterPage() {
       toast.error(getError(err));
     }
   };
+
   return (
-    <Main_Layout title="Create Account">
+    <Main_Layout title="Profile">
       <form
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl">Create Account</h1>
+        <h1 className="mb-4 text-xl">Update Profile</h1>
+
         <div className="mb-4">
           <label htmlFor="name">Name</label>
           <input
@@ -72,6 +71,8 @@ export default function RegisterPage() {
           <label htmlFor="email">Email</label>
           <input
             type="email"
+            className="w-full"
+            id="email"
             {...register('email', {
               required: 'Please enter email',
               pattern: {
@@ -79,29 +80,28 @@ export default function RegisterPage() {
                 message: 'Please enter a valid email',
               },
             })}
-            className="w-full"
-            id="email"
-          ></input>
+          />
           {errors.email && (
             <div className="text-red-500">{errors.email.message}</div>
           )}
         </div>
+
         <div className="mb-4">
           <label htmlFor="password">Password</label>
           <input
-            type="password"
-            {...register('password', {
-              required: 'Please enter password',
-              minLength: { value: 8, message: 'Password should be longer' },
-            })}
             className="w-full"
+            type="password"
             id="password"
-            autoFocus
-          ></input>
+            {...register('password', {
+              value: 8,
+              message: 'password should be at least 8 characters',
+            })}
+          />
           {errors.password && (
             <div className="text-red-500 ">{errors.password.message}</div>
           )}
         </div>
+
         <div className="mb-4">
           <label htmlFor="comparePassword">Confirm Password</label>
           <input
@@ -109,11 +109,10 @@ export default function RegisterPage() {
             type="password"
             id="comparePassword"
             {...register('comparePassword', {
-              required: 'Please enter confirm password',
               validate: (value) => value === getValues('password'),
               minLength: {
                 value: 8,
-                message: 'Password should be longer',
+                message: 'password should be at least 8 characters',
               },
             })}
           />
@@ -127,11 +126,12 @@ export default function RegisterPage() {
               <div className="text-red-500 ">Password do not match</div>
             )}
         </div>
-
-        <div className="mb-4 ">
-          <button className="primary-button">Register</button>
+        <div className="mb-4">
+          <button className="primary-button">Update Profile</button>
         </div>
       </form>
     </Main_Layout>
   );
 }
+
+UserProfile.auth = true;

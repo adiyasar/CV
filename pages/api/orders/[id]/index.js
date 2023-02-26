@@ -1,6 +1,6 @@
 import { getSession } from 'next-auth/react';
-import Order from '../../../Data/Order_model';
-import db from '../../../utils/mongoDB';
+import Order from '../../../../Data/Order_model';
+import db from '../../../../utils/mongoDB';
 
 const orderPageHandler = async (req, res) => {
   const session = await getSession({ req });

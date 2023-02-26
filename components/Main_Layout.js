@@ -55,29 +55,31 @@ export default function Main_Layout({ title, children }) {
                   </Menu.Button>
                   <Menu.Items className=" absolute w-56 origin-top-right right-0 bg-white shadow-lg">
                     <Menu.Item>
-                      <DropdownProfile
-                        className="dropdown-prof"
-                        href="/profile"
-                      >
-                        Profile
-                      </DropdownProfile>
+                      <Link className="dropdown-prof link" href="/user_profile">
+                        Edit Profile
+                      </Link>
                     </Menu.Item>
                     <Menu.Item>
-                      <DropdownProfile
-                        className="dropdown-prof"
-                        href="/order-history"
+                      <Link className="dropdown-prof link" href="/seller/menu">
+                        My Products
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <Link
+                        className="dropdown-prof link"
+                        href="/previous-orders"
                       >
                         Order History
-                      </DropdownProfile>
+                      </Link>
                     </Menu.Item>
                     <Menu.Item>
-                      <a
-                        className="dropdown-prof"
+                      <Link
+                        className="dropdown-prof link"
                         href="#"
                         onClick={logoutClickHandler}
                       >
                         Logout
-                      </a>
+                      </Link>
                     </Menu.Item>
                   </Menu.Items>
                 </Menu>
