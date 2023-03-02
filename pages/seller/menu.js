@@ -67,7 +67,7 @@ function SellerMenu() {
   }, []);
 
   const data = {
-    labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
+    labels: summary.salesData.map((x) => x._id),
     datasets: [
       {
         label: 'Sales',

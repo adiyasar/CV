@@ -6,7 +6,6 @@ import { Shop } from '../utils/Shop';
 import { ToastContainer } from 'react-toastify';
 import { signOut, useSession } from 'next-auth/react';
 import 'react-toastify/dist/ReactToastify.css';
-import DropdownProfile from './DropdownProfile';
 import Cookies from 'js-cookie';
 
 export default function Main_Layout({ title, children }) {

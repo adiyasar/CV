@@ -34,10 +34,25 @@ export default function CreateOrder() {
   const [loading, setLoading] = useState(false);
 
   const placeOrderHandler = async () => {
+    var seller_emails = [];
+    var seller_data = [];
+    console.log('Inner');
+    cartItems.forEach(async function (item) {
+      console.log('item: ' + item.slug);
+      if (seller_emails.indexOf(item.seller_email) > -1) {
+        console.log('Item already exists');
+      } else {
+        seller_emails.push(item.seller_email);
+        seller_data.push({ name: item.seller, email: item.seller_email });
+      }
+    });
+    console.log('Seller data: ' + seller_data);
+    console.log('Items data: ' + cartItems);
     try {
       setLoading(true);
       const { data } = await axios.post('/api/orders', {
         orderItems: cartItems,
+        sellers: seller_data,
         deliveryAddress,
         paymentMethod,
         itemsPrice,
@@ -45,7 +60,6 @@ export default function CreateOrder() {
         totalPrice,
       });
       setLoading(false);
-      console.log('HELLO1');
       dispatch({ type: 'CART_CLEAR_ITEMS' });
       Cookies.set(
         'cart-items',
@@ -54,7 +68,6 @@ export default function CreateOrder() {
           cartItems: [],
         })
       );
-      console.log('HELLO2');
       router.push(`/order/${data._id}`);
     } catch (err) {
       setLoading(false);

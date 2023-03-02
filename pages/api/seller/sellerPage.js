@@ -14,32 +14,58 @@ const sellerHandle = async (req, res) => {
   const { user } = session;
   await db.connect();
 
-  const ordersCount = await Order.countDocuments({ user: user._id });
+  const ordersCount = await Order.countDocuments({
+    sellers: { $elemMatch: { email: user.email } },
+  });
   console.log(user.name);
   const productsCount = await Product.countDocuments({
     seller: { $regex: user.name },
   });
   const usersCount = await User.countDocuments();
 
-  const ordersPriceGroup = await Order.aggregate([
-    {
-      $group: {
-        _id: null,
-        sales: { $sum: '$totalPrice' },
-      },
-    },
-  ]);
-  const ordersPrice =
-    ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0;
+  const orders_with_seller = await Order.find({
+    sellers: { $elemMatch: { email: user.email } },
+  });
+  const sellers_products = await Product.find({
+    seller: { $regex: user.name },
+  });
+  var sum = 0;
+  var sales = [];
+  for (let order of orders_with_seller) {
+    var sum_for_order = 0;
+    for (let item of order.orderItems) {
+      for (let product of sellers_products) {
+        if (product._id.equals(item._id)) {
+          sum += item.quantity * item.price;
+          sum_for_order += item.quantity * item.price;
+        }
+      }
+    }
 
-  const salesData = await Order.aggregate([
-    {
-      $group: {
-        _id: { $dateToString: { format: '%Y-%m', date: '$createdAt' } },
-        totalSales: { $sum: '$totalPrice' },
-      },
-    },
-  ]);
+    var time_of_sale_month = order.createdAt.getMonth();
+    if (Number(time_of_sale_month) < 10) {
+      time_of_sale_month = '0' + time_of_sale_month;
+    }
+    var time_of_sale_year = order.createdAt.getFullYear();
+    var time_of_sale = time_of_sale_year + '-' + time_of_sale_month;
+    console.log('Push time: ' + time_of_sale);
+    console.log('Push price: ' + sum_for_order);
+    sales.push({
+      _id: time_of_sale,
+      totalSales: sum_for_order,
+    });
+  }
+  const res_after = Array.from(
+    sales.reduce(
+      (m, { _id, totalSales }) => m.set(_id, (m.get(_id) || 0) + totalSales),
+      new Map()
+    ),
+    ([_id, totalSales]) => ({ _id, totalSales })
+  );
+
+  const ordersPrice = sum;
+  const salesData = res_after;
+  console.log('Sales:' + res);
 
   await db.disconnect();
   res.send({ ordersCount, productsCount, usersCount, ordersPrice, salesData });
