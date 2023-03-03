@@ -10,6 +10,19 @@ import Main_Layout from '../components/Main_Layout';
 import { Shop } from '../utils/Shop';
 import getError from '../utils/handle_error';
 
+function createTestCode(length) {
+  let result = '';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 export default function CreateOrder() {
   const { state, dispatch } = useContext(Shop);
   const { cart } = state;
@@ -38,12 +51,17 @@ export default function CreateOrder() {
     var seller_data = [];
     console.log('Inner');
     cartItems.forEach(async function (item) {
+      var code = createTestCode(5);
       console.log('item: ' + item.slug);
       if (seller_emails.indexOf(item.seller_email) > -1) {
         console.log('Item already exists');
       } else {
         seller_emails.push(item.seller_email);
-        seller_data.push({ name: item.seller, email: item.seller_email });
+        seller_data.push({
+          name: item.seller,
+          email: item.seller_email,
+          testCode: code,
+        });
       }
     });
     console.log('Seller data: ' + seller_data);

@@ -51,8 +51,8 @@ function PreviousOrders() {
                 <th className="px-5 text-left">Order number:</th>
                 <th className="p-5 text-left">Ordered at:</th>
                 <th className="p-5 text-left">PAYMENT:</th>
-                <th className="p-5 text-left">PAYMENT STATUS:</th>
-                <th className="p-5 text-left">DELIVERY STATUS:</th>
+                <th className="p-5 text-left">PAYMENT DATE:</th>
+                <th className="p-5 text-left">DELIVERY DATE:</th>
                 <th className="p-5 text-left">DETAILS:</th>
               </tr>
             </thead>

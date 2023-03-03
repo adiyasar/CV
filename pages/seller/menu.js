@@ -104,17 +104,23 @@ function SellerMenu() {
                 <div className="card m-5 p-5">
                   <p className="text-3xl">₸{summary.ordersPrice} </p>
                   <p>Sales</p>
-                  <Link href="/seller/orders">View sales</Link>
+                  <Link className="link" href="/seller/orders">
+                    View sales
+                  </Link>
                 </div>
                 <div className="card m-5 p-5">
                   <p className="text-3xl">{summary.ordersCount} </p>
                   <p>Orders</p>
-                  <Link href="/seller/orders">View orders</Link>
+                  <Link className="link" href="/seller/orders">
+                    View orders
+                  </Link>
                 </div>
                 <div className="card m-5 p-5">
                   <p className="text-3xl">{summary.productsCount} </p>
                   <p>Products</p>
-                  <Link href="/seller/products">View products</Link>
+                  <Link className="link" href="/seller/products">
+                    View products
+                  </Link>
                 </div>
               </div>
               <h2 className="text-xl">Sales Report</h2>
