@@ -64,28 +64,25 @@ export default function SellerOrders() {
   };
 
   return (
-    <Main_Layout title="Admin Dashboard">
+    <Main_Layout title="Seller Page">
       <div className="grid md:grid-cols-4 md:gap-5">
         <div>
           <ul>
             <li>
-              <Link href="/admin/dashboard">Dashboard</Link>
+              <Link href="/seller/menu">Overview</Link>
             </li>
             <li>
-              <Link className="font-bold" href="/admin/orders">
+              <Link className="font-bold" href="/seller/orders">
                 Orders
               </Link>
             </li>
             <li>
-              <Link href="/admin/products">Products</Link>
-            </li>
-            <li>
-              <Link href="/admin/users">Users</Link>
+              <Link href="/seller/products">Products</Link>
             </li>
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
-          <h1 className="mb-4 text-xl">Admin Orders</h1>
+          <h1 className="mb-4 text-xl">Seller Orders</h1>
 
           {loading ? (
             <div>Loading...</div>
