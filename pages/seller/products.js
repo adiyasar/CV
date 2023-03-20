@@ -55,7 +55,16 @@ export default function SellerProducts() {
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
-          <h1 className="mb-4 text-xl">Products</h1>
+          <div className="flex justify-between">
+            <h1 className="mb-4 text-xl">Products</h1>
+            <Link
+              type="button"
+              className="primary-button"
+              href={`/seller/createItem`}
+            >
+              Add
+            </Link>
+          </div>
           {loading ? (
             <div>Loading...</div>
           ) : error ? (

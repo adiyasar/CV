@@ -77,30 +77,23 @@ export default function SellerItemEditPage() {
   const router = useRouter();
 
   const uploadHandler = async (e, imageField = 'image') => {
-    console.log('Test 1');
     const url = `https://api.cloudinary.com/v1_1/dzgtws9bn/upload`;
     try {
       dispatch({ type: 'UPLOAD_REQUEST' });
       const {
         data: { signature, timestamp },
       } = await axios('/api/seller/cloudinary');
-      console.log('Test 2');
       const file = e.target.files[0];
       const formData = new FormData();
-      console.log('Test 3');
       formData.append('file', file);
       formData.append('signature', signature);
-      console.log('Test 4');
       formData.append('timestamp', timestamp);
       formData.append('api_key', 565166749963633);
-      console.log('Test 5');
       const { data } = await axios.post(url, formData);
       dispatch({ type: 'UPLOAD_SUCCESS' });
-      console.log('Test 6');
       setValue(imageField, data.secure_url);
       toast.success('File uploaded successfully');
     } catch (err) {
-      console.log('Test Fail');
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
       toast.error(getError(err));
     }
