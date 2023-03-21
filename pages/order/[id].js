@@ -74,7 +74,6 @@ function PlaceOrder() {
       loadPaypalScript();
     }
   }, [order, orderId, paymentSuccessful, paypalDispatch]);
-
   const {
     deliveryAddress,
     paymentMethod,
@@ -82,6 +81,7 @@ function PlaceOrder() {
     itemsPrice,
     deliveryPrice,
     totalPrice,
+    sellers,
     isPaid,
     paidAt,
     isDelivered,
@@ -151,6 +151,73 @@ function PlaceOrder() {
                 <div className="success">Paid at {paidAt}</div>
               ) : (
                 <div className="error">Not paid</div>
+              )}
+              <div
+                class="flex items-center p-5 leading-normal text-blue-600 bg-blue-100 rounded-lg"
+                role="alert"
+              >
+                <g data-v-2d0d7d62="">
+                  <rect
+                    data-v-2d0d7d62=""
+                    fill="none"
+                    height="24"
+                    width="24"
+                  ></rect>
+                </g>
+                <g data-v-2d0d7d62="">
+                  <g data-v-2d0d7d62=""></g>
+                  <g data-v-2d0d7d62="">
+                    <circle
+                      data-v-2d0d7d62=""
+                      cx="15.5"
+                      cy="9.5"
+                      r="1.5"
+                    ></circle>
+                    <circle
+                      data-v-2d0d7d62=""
+                      cx="8.5"
+                      cy="9.5"
+                      r="1.5"
+                    ></circle>
+                    <path
+                      data-v-2d0d7d62=""
+                      d="M12,18c2.28,0,4.22-1.66,5-4H7C7.78,16.34,9.72,18,12,18z"
+                    ></path>
+                    <path
+                      data-v-2d0d7d62=""
+                      d="M11.99,2C6.47,2,2,6.48,2,12c0,5.52,4.47,10,9.99,10C17.52,22,22,17.52,22,12C22,6.48,17.52,2,11.99,2z M12,20 c-4.42,0-8-3.58-8-8c0-4.42,3.58-8,8-8s8,3.58,8,8C20,16.42,16.42,20,12,20z"
+                    ></path>
+                  </g>
+                </g>
+
+                <p>Your confirmation codes: </p>
+              </div>
+              {isPaid ? (
+                <div>
+                  <table className="min-w-full">
+                    <thead className="border-b">
+                      <tr>
+                        <th className="px-5 text-left">Seller</th>
+                        <th className="    p-5 text-right">Seller Email</th>
+                        <th className="  p-5 text-right">Confirmation Code</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sellers.map((seller) => (
+                        <tr key={seller._id} className="border-b">
+                          <td className=" p-5 ">{seller.name}</td>
+                          <td className=" p-5 text-right">{seller.email}</td>
+                          <td className="p-5 text-right">{seller.testCode}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div>
+                  You will receive a confirmation code once the payment is made.
+                  Please provide it to the seller.
+                </div>
               )}
             </div>
 
