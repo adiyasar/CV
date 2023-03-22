@@ -55,6 +55,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.carousel-image {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  width: inherit;
+  overflow: hidden;
+}
+
 input[type='number'] {
   -moz-appearance: textfield;
 }

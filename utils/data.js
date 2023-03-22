@@ -26,7 +26,8 @@ const data = {
       name: 'Curry',
       slug: 'curry',
       category: 'Food',
-      image: '/img/Curry.png',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679290542/ln5f7ugvd0vuffz9o9yl.jpg',
       price: 990,
       seller: 'Marry Pop',
       seller_email: 'marry_pop@nu.edu.kz',
@@ -39,7 +40,8 @@ const data = {
       name: 'Pasta',
       slug: 'pasta',
       category: 'Food',
-      image: '/img/Pasta.jpg',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679290760/mrjvt1sekrhouiv8hyl8.jpg',
       price: 750,
       seller: 'Marry Pop',
       seller_email: 'marry_pop@nu.edu.kz',
@@ -53,7 +55,8 @@ const data = {
       name: 'Iphone XR',
       slug: 'iphone-xr',
       category: 'Tech',
-      image: '/img/IphoneXR.jpg',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679291037/mw6ghfa8zpu06i6ndzha.jpg',
       price: 199000,
       seller: 'Joe Pop',
       seller_email: 'joe_pop@nu.edu.kz',
@@ -66,7 +69,8 @@ const data = {
       name: 'ASUS ROG Strix',
       slug: 'asus-rog-strix',
       category: 'Tech',
-      image: '/img/AsusRog.jpg',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679291051/kgedxxomt2mzcvtsym0y.jpg',
       price: 579000,
       seller: 'Joe Pop',
       seller_email: 'joe_pop@nu.edu.kz',
@@ -80,7 +84,8 @@ const data = {
       name: 'Black T-Shirt',
       slug: 'black-t-shirt',
       category: 'Clothes',
-      image: '/img/Black_T_shirt.jpg',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679291090/nxwgarc3pigshd7efbh0.jpg',
       price: 1990,
       seller: 'Ashley Moe',
       seller_email: 'ashley_moe@nu.edu.kz',
@@ -94,7 +99,8 @@ const data = {
       name: 'Grey Running Shorts',
       slug: 'grey-running-shorts',
       category: 'Clothes',
-      image: '/img/Grey_Running_Shorts.jpg',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679291099/o6ozbnxav2oimzwnunrx.jpg',
       price: 3990,
       seller: 'Ashley Moe',
       seller_email: 'ashley_moe@nu.edu.kz',
@@ -103,6 +109,94 @@ const data = {
       countInStock: 27,
       description:
         'New, slim sport running shorts from Korea. Good quality, 100% breathable',
+    },
+    {
+      name: 'Instant Ramen',
+      slug: 'instant-ramen',
+      category: 'Food',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473551/ansekek8tnnogzytni3v.jpg',
+      price: 690,
+      seller: 'Ashley Moe',
+      seller_email: 'ashley_moe@nu.edu.kz',
+      rating: 4.9,
+      numReviews: 46,
+      countInStock: 120,
+      description:
+        'Everything that a college student could dream of (Stomach cancer included)',
+      popular: true,
+      banner:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473551/ansekek8tnnogzytni3v.jpg',
+    },
+    {
+      name: 'Macaron cookies (10 pieces)',
+      slug: 'macaron-cookies',
+      category: 'Food',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473551/kzg5mqfnk6ynxhedqh8x.jpg',
+      price: 1200,
+      seller: 'Marry Pop',
+      seller_email: 'marry_pop@nu.edu.kz',
+      rating: 4.7,
+      numReviews: 21,
+      countInStock: 30,
+      description: 'Sweet and crunchy. Freshly baked',
+      popular: true,
+      banner:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473551/kzg5mqfnk6ynxhedqh8x.jpg',
+    },
+    {
+      name: 'Custom Shirt',
+      slug: 'custom-shirt',
+      category: 'Clothes',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473568/hxysy9gv4povtkzea7jn.png',
+      price: 2990,
+      seller: 'Ashley Moe',
+      seller_email: 'ashley_moe@nu.edu.kz',
+      rating: 4.3,
+      numReviews: 9,
+      countInStock: 12,
+      description:
+        'Custom shirt with a pretty cool design.  (In my opinion ^-^ ) ',
+      popular: true,
+      banner:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473568/hxysy9gv4povtkzea7jn.png',
+    },
+    {
+      name: 'Home Robes',
+      slug: 'home-robes',
+      category: 'Clothes',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473550/wdwihsx1dof844bo1ytn.jpg',
+      price: 4990,
+      seller: 'Ashley Moe',
+      seller_email: 'ashley_moe@nu.edu.kz',
+      rating: 4.8,
+      numReviews: 17,
+      countInStock: 3,
+      description: 'Cozy and warm robes to keep you...cozy and warm, duh',
+      popular: true,
+      banner:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473550/wdwihsx1dof844bo1ytn.jpg',
+    },
+    {
+      name: 'Winter Hoodie',
+      slug: 'winter-hoodie',
+      category: 'Clothes',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473577/zdjcoaxo5rvrn9fvgf2w.jpg',
+      price: 6990,
+      seller: 'Ashley Moe',
+      seller_email: 'ashley_moe@nu.edu.kz',
+      rating: 4.4,
+      numReviews: 11,
+      countInStock: 1,
+      description:
+        'A perfect hoodie for a cold winter (A regular one in Astana, I guess.)',
+      popular: true,
+      banner:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473577/zdjcoaxo5rvrn9fvgf2w.jpg',
     },
   ],
 };
