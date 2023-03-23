@@ -11,6 +11,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
 
 export default function Home({ items, popularItems }) {
+  console.log(items);
   const { state, dispatch } = useContext(Shop);
   const { cart } = state;
 

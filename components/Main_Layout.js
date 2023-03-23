@@ -7,12 +7,21 @@ import { ToastContainer } from 'react-toastify';
 import { signOut, useSession } from 'next-auth/react';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 export default function Main_Layout({ title, children }) {
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Shop);
   const { cart } = state;
   const [countCartItems, setCountCartItems] = useState(0);
+  const [query, setQuery] = useState('');
+
+  const router = useRouter();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    router.push(`/search?query=${query}`);
+  };
+
   useEffect(() => {
     setCountCartItems(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
@@ -35,6 +44,37 @@ export default function Main_Layout({ title, children }) {
             <Link href="/" className="text-lg font-bold">
               NU Marketplace
             </Link>
+            <form
+              onSubmit={submitHandler}
+              className="mx-auto  hidden w-full justify-center md:flex"
+            >
+              <input
+                onChange={(e) => setQuery(e.target.value)}
+                type="text"
+                className="rounded-tr-none rounded-br-none p-1 text-sm   focus:ring-0"
+                placeholder="Search products"
+              />
+              <button
+                className="rounded rounded-tl-none rounded-bl-none bg-amber-300 p-1 text-sm dark:text-black"
+                type="submit"
+                id="button-addon2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
+              </button>
+            </form>
             <div>
               <Link href="/shopping_cart" className="p-2">
                 Shopping Cart
