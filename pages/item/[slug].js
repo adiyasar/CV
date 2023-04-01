@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
+import { Rate } from 'antd';
 import Main_Layout from '../../components/Main_Layout';
 import Image from 'next/image';
 import { Shop } from '../../utils/Shop';
@@ -8,12 +9,27 @@ import db from '../../utils/mongoDB';
 import Product from '../../Data/Product_model';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import User from '../../Data/Users_model';
 
 export default function ItemWindow(props) {
-  const { item } = props;
+  const { item, seller } = props;
+  console.log('Data:');
+  console.log(seller);
   const { state, dispatch } = useContext(Shop);
   const router = useRouter();
-
+  function roundToHalf(value) {
+    var converted = parseFloat(value);
+    var decimal = converted - parseInt(converted, 10);
+    decimal = Math.round(decimal * 10);
+    if (decimal == 5) {
+      return parseInt(converted, 10) + 0.5;
+    }
+    if (decimal < 3 || decimal > 7) {
+      return Math.round(converted);
+    } else {
+      return parseInt(converted, 10) + 0.5;
+    }
+  }
   if (!item) {
     return (
       <Main_Layout title="Error">Oops! Product does not exist</Main_Layout>
@@ -31,6 +47,7 @@ export default function ItemWindow(props) {
     dispatch({ type: 'ADD_ITEM', payload: { ...item, quantity } });
     router.push('/shopping_cart');
   };
+  const desc = ['Terrible', 'Poor', 'Average', 'Very Good', 'Excellent'];
   return (
     <Main_Layout title={item.name}>
       <div className="py-2">
@@ -56,7 +73,14 @@ export default function ItemWindow(props) {
             <li>Category: {item.category}</li>
             <li>Seller: {item.seller}</li>
             <li>
-              Rating: {item.rating} ({item.numReviews} reviews)
+              Seller Rating: <></>
+              <Rate
+                allowHalf
+                tooltips={desc}
+                disabled
+                defaultValue={roundToHalf(seller.rating)}
+              />{' '}
+              ({seller.numReviews} reviews)
             </li>
             <li>Description: {item.description}</li>
           </ul>
@@ -87,10 +111,12 @@ export async function getServerSideProps(context) {
 
   await db.connect();
   const product = await Product.findOne({ slug }).lean();
+  const seller = await User.findOne({ email: product.seller_email }).lean();
   await db.disconnect();
   return {
     props: {
       item: product ? db.convertDocToObj(product) : null,
+      seller: seller ? db.convertDocToObj(seller) : null,
     },
   };
 }

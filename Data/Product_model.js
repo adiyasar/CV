@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema(
     seller: { type: String, required: true },
     seller_email: { type: String, required: true },
     rating: { type: Number, required: true, default: 0 },
+    reviews: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' },
     numReviews: { type: Number, required: true, default: 0 },
     countInStock: { type: Number, required: true, default: 0 },
     description: { type: String, required: true },

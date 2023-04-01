@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema(
         email: { type: String, required: true },
         testCode: { type: String, required: true },
         sellerDelivered: { type: Boolean, required: true, default: false },
+        sellerReviewed: { type: Boolean, required: true, default: false },
       },
     ],
     orderItems: [

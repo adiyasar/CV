@@ -27,9 +27,21 @@ export default function Home({ items, popularItems }) {
     dispatch({ type: 'ADD_ITEM', payload: { ...item, quantity } });
     toast.success('Added to cart');
   };
+
   return (
-    <Main_Layout title="Home Page">
-      <Carousel showThumbs={false} showStatus={false} autoPlay>
+    <Main_Layout className="layout" title="Home Page">
+      <section className="header rounded shadow object-cover  w-full">
+        <h1>NU Marketplace</h1>
+        <p>Everything you might need in one click</p>
+        <a className="btn-bgstroke">Main Page</a>
+      </section>
+
+      <Carousel
+        className="carousel"
+        showThumbs={false}
+        showStatus={false}
+        autoPlay
+      >
         {popularItems.map((item) => (
           <div key={item._id}>
             <Link className="flex" href={`/item/${item.slug}`} passHref>
@@ -56,6 +68,7 @@ export async function getServerSideProps() {
   await db.connect();
   const products = await Product.find().lean();
   const popularItems = await Product.find({ popular: true }).lean();
+
   return {
     props: {
       popularItems: popularItems.map(db.convertDocToObj),
