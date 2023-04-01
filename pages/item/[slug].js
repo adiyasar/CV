@@ -79,7 +79,7 @@ export default function ItemWindow(props) {
                 tooltips={desc}
                 disabled
                 defaultValue={roundToHalf(seller.rating)}
-              />{' '}
+              />
               ({seller.numReviews} reviews)
             </li>
             <li>Description: {item.description}</li>

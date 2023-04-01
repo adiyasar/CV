@@ -90,6 +90,9 @@ function SellerMenu() {
             <li>
               <Link href="/seller/products">Products</Link>
             </li>
+            <li>
+              <Link href="/seller/reviews">Reviews</Link>
+            </li>
           </ul>
         </div>
         <div className="md:col-span-3">

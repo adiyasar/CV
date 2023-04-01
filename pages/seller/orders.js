@@ -79,6 +79,9 @@ export default function SellerOrders() {
             <li>
               <Link href="/seller/products">Products</Link>
             </li>
+            <li>
+              <Link href="/seller/reviews">Reviews</Link>
+            </li>
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">

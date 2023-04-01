@@ -52,6 +52,9 @@ export default function SellerProducts() {
                 Products
               </Link>
             </li>
+            <li>
+              <Link href="/seller/reviews">Reviews</Link>
+            </li>
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
