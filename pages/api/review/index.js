@@ -39,6 +39,7 @@ const reviewHandle = async (req, res) => {
     seller_email: sellerEmail,
     rating: rating_val,
     comment: comment,
+    order: orderId,
   });
 
   const review = await newReview.save();

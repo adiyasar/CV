@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   }
   const { user } = session;
   await db.connect();
-  const reviews = await Review.find({ user: user._id });
+  const reviews = await Review.find({ seller_email: user.email });
   await db.disconnect();
   res.send(reviews);
 };

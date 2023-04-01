@@ -8,6 +8,11 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    order: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order',
+      required: true,
+    },
     rating: { type: Number, default: 0 },
     comment: { type: String, required: true },
   },

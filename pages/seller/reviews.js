@@ -49,12 +49,15 @@ export default function SellerReviews() {
               <Link href="/seller/menu">Overview</Link>
             </li>
             <li>
-              <Link className="font-bold" href="/seller/orders">
-                Orders
-              </Link>
+              <Link href="/seller/orders">Orders</Link>
             </li>
             <li>
               <Link href="/seller/products">Products</Link>
+            </li>
+            <li>
+              <Link className="font-bold" href="/seller/reviews">
+                Reviews
+              </Link>
             </li>
           </ul>
         </div>
@@ -74,6 +77,7 @@ export default function SellerReviews() {
                     <th className="p-5 text-left">RATING</th>
                     <th className="p-5 text-left">DATE</th>
                     <th className="p-5 text-left">COMMENT</th>
+                    <th className="p-5 text-left">ORDER</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -92,6 +96,7 @@ export default function SellerReviews() {
                         {review.createdAt.substring(0, 10)}
                       </td>
                       <td className="p-5">{review.comment}</td>
+                      <td className="p-5">{review.order.substring(20, 24)}</td>
                     </tr>
                   ))}
                 </tbody>
