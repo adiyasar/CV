@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { Rate } from 'antd';
 import Main_Layout from '../../components/Main_Layout';
-import Image from 'next/image';
+import ItemPage from '../../components/ItemPage';
 import { Shop } from '../../utils/Shop';
 import db from '../../utils/mongoDB';
 import Product from '../../Data/Product_model';
@@ -12,7 +12,13 @@ import { toast } from 'react-toastify';
 import User from '../../Data/Users_model';
 
 export default function ItemWindow(props) {
-  const { item, seller } = props;
+  const { item, seller, recs } = props;
+  var top_items = recs.filter(function (obj) {
+    return obj.slug !== item.slug;
+  });
+  if (top_items.length > 7) {
+    top_items = top_items.slice(0, 8);
+  }
   console.log('Data:');
   console.log(seller);
   const { state, dispatch } = useContext(Shop);
@@ -35,6 +41,7 @@ export default function ItemWindow(props) {
       <Main_Layout title="Error">Oops! Product does not exist</Main_Layout>
     );
   }
+
   const addToCart = async () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === item.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -57,13 +64,19 @@ export default function ItemWindow(props) {
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2">
-          <Image
+          {/* <Image
             src={item.image}
             alt={item.name}
             width={840}
             height={840}
             layout="responsive"
-          ></Image>
+          ></Image> */}
+          <object
+            className="custom_obj"
+            data={item.image}
+            width={640}
+            height={540}
+          ></object>
         </div>
         <div>
           <ul>
@@ -101,6 +114,21 @@ export default function ItemWindow(props) {
           </div>
         </div>
       </div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <h2>Reccomendaitons:</h2>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {top_items.map((item) => (
+          <ItemPage
+            item={item}
+            key={item.slug}
+            addToCart={addToCart}
+          ></ItemPage>
+        ))}
+      </div>
     </Main_Layout>
   );
 }
@@ -109,14 +137,28 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { slug } = params;
 
+  console.log('User:');
+
   await db.connect();
   const product = await Product.findOne({ slug }).lean();
+
   const seller = await User.findOne({ email: product.seller_email }).lean();
+
+  const tags = seller.favourite_tags;
+  const tag1 = tags[0];
+  const tag2 = tags[1];
+  const tag3 = tags[2];
+  const recs = await Product.find({
+    category: { $in: [tag1, tag2, tag3] },
+  }).lean();
+  console.log(recs);
+
   await db.disconnect();
   return {
     props: {
       item: product ? db.convertDocToObj(product) : null,
       seller: seller ? db.convertDocToObj(seller) : null,
+      recs: recs.map(db.convertDocToObj),
     },
   };
 }

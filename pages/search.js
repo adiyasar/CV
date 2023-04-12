@@ -249,7 +249,6 @@ export async function getServerSideProps({ query }) {
           },
         }
       : {};
-  // 10-50
   const priceFilter =
     price && price !== 'all'
       ? {

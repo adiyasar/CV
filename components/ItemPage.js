@@ -6,11 +6,16 @@ export default function itemPage({ item, addToCart }) {
   return (
     <div className="card">
       <Link href={`/item/${item.slug}`}>
-        <img
+        {/* <img
           src={item.image}
           alt={item.name}
           className="rounded shadow object-cover h-64 w-full"
-        />
+        /> */}
+        <object
+          data={item.image}
+          className="rounded shadow object-cover h-64 w-full"
+          onload="this.contentDocument.querySelector('video').play()"
+        ></object>
       </Link>
       <div className="flex flex-col items-center justify-center p-5">
         <Link href={`/item/${item.slug}`}>

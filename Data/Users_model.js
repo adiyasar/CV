@@ -9,6 +9,15 @@ const userSchema = new mongoose.Schema(
     rating: { type: Number, required: true, default: 0 },
     reviews: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' },
     numReviews: { type: Number, required: true, default: 0 },
+    favourite_tags: {
+      type: [
+        {
+          type: String,
+          // Another properties
+        },
+      ],
+      default: ['Clothes', 'Food', 'Tech'],
+    },
   },
   {
     timestamps: true,
