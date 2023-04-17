@@ -40,7 +40,7 @@ export default function Checkout() {
       <DeliveryHandler activeStep={2} />
       <form className="mx-auto max-w-screen-md" onSubmit={handleSubmit}>
         <h1 className="text-xl mb-4">How would you like to pay?</h1>
-        {['PayPal', 'CashOnDelivery'].map((checkout) => (
+        {['PayPal', 'Cash On Delivery'].map((checkout) => (
           <div key={checkout} className="mb-4">
             <input
               name="paymentMethod"

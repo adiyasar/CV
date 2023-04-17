@@ -42,6 +42,14 @@ export default function Main_Layout({ title, children }) {
         <header>
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link href="/" className="text-lg font-bold">
+              <img
+                src="https://res.cloudinary.com/dzgtws9bn/image/upload/v1681566766/yjtm1sc7ofuorcbetotm.png"
+                alt=""
+                width="100"
+                height="100"
+              />
+            </Link>
+            <Link href="/" className="text-lg font-bold">
               NU Marketplace
             </Link>
             <form

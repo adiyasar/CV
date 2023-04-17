@@ -80,6 +80,9 @@ export default function SellerOrders() {
               <Link href="/seller/products">Products</Link>
             </li>
             <li>
+              <Link href="/seller/auctions">Auctions</Link>
+            </li>
+            <li>
               <Link href="/seller/reviews">Reviews</Link>
             </li>
           </ul>

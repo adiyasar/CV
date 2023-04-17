@@ -17,7 +17,7 @@ export default function ItemWindow(props) {
     return obj.slug !== item.slug;
   });
   if (top_items.length > 7) {
-    top_items = top_items.slice(0, 8);
+    // top_items = top_items.slice(0, 8);
   }
   console.log('Data:');
   console.log(seller);

@@ -82,13 +82,18 @@ function SellerMenu() {
         <div>
           <ul>
             <li>
-              <Link className="font-bold link" href="/seller/menu"></Link>
+              <Link className="font-bold" href="/seller/menu">
+                Overview
+              </Link>
             </li>
             <li>
               <Link href="/seller/orders">Orders</Link>
             </li>
             <li>
               <Link href="/seller/products">Products</Link>
+            </li>
+            <li>
+              <Link href="/seller/auctions">Auctions</Link>
             </li>
             <li>
               <Link href="/seller/reviews">Reviews</Link>

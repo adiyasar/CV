@@ -16,6 +16,7 @@ const orderHandle = async (req, res) => {
   });
 
   const order = await newOrder.save();
+  await db.disconnect();
   res.status(201).send(order);
 };
 export default orderHandle;

@@ -204,6 +204,67 @@ const data = {
       banner:
         'https://res.cloudinary.com/dzgtws9bn/image/upload/v1679473577/zdjcoaxo5rvrn9fvgf2w.jpg',
     },
+    {
+      name: 'Cleaning',
+      slug: 'cleaning',
+      category: 'Services',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1681299748/xcjrqlssflmzx6fzykhk.jpg',
+      price: 2990,
+      seller: 'Ashley Moe',
+      seller_email: 'ashley_moe@nu.edu.kz',
+      rating: 4.8,
+      numReviews: 39,
+      countInStock: 100,
+      description: 'Full cleaning of the room',
+      popular: false,
+      banner:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1681299748/xcjrqlssflmzx6fzykhk.jpg',
+    },
+  ],
+  auctions: [
+    {
+      name: 'PS5',
+      slug: 'ps5',
+      category: 'Tech',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1681386513/abncasmjkjl8vceumyfj.jpg',
+      starting_price: 299990,
+      seller: 'Joe Pop',
+      seller_email: 'joe_pop@nu.edu.kz',
+      rating: 4.1,
+      numReviews: 9,
+      description:
+        'Fairly new PS5 with its original box. Everything is working, all cables are in the box. NO CONTROLLER',
+    },
+    {
+      name: 'PS5 Controller',
+      slug: 'ps5-controller',
+      category: 'Tech',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1681386512/ccsm48auwzdeooaptzbk.jpg',
+      starting_price: 19990,
+      seller: 'Joe Pop',
+      seller_email: 'joe_pop@nu.edu.kz',
+      rating: 4.1,
+      numReviews: 9,
+      description:
+        'Fairly new PS5 with its original box. Everything is working, all cables are in the box. NO CONTROLLER',
+    },
+    {
+      name: '(Signed!) Afterwolds by Scott Westerfeld',
+      slug: 'Afterwolds-signed',
+      category: 'Others',
+      image:
+        'https://res.cloudinary.com/dzgtws9bn/image/upload/v1681386653/ddy52mljp7acfumqdvtw.jpg',
+      starting_price: 50000,
+      seller: 'Ashley Moe',
+      seller_email: 'ashley_moe@nu.edu.kz',
+      rating: 4.8,
+      numReviews: 39,
+      description:
+        'One of the 100 signed copies of Afterwolds by Scott Westerfeld',
+    },
   ],
 };
 

@@ -55,6 +55,9 @@ export default function SellerReviews() {
               <Link href="/seller/products">Products</Link>
             </li>
             <li>
+              <Link href="/seller/auctions">Auctions</Link>
+            </li>
+            <li>
               <Link className="font-bold" href="/seller/reviews">
                 Reviews
               </Link>

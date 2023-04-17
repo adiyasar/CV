@@ -69,22 +69,15 @@ export default function SellerItemEditPage() {
     }
   };
 
-  const submitHandler = async ({
-    name,
-    price,
-    image,
-    countInStock,
-    description,
-  }) => {
+  const submitHandler = async ({ name, price, image, description }) => {
     try {
       var Category = document.getElementById('Category');
       var category = Category.options[Category.selectedIndex].text;
-      await axios.post(`/api/seller/createItem`, {
+      await axios.post(`/api/seller/createAuction`, {
         name,
         price,
         category,
         image,
-        countInStock,
         description,
       });
       toast.success('Product updated successfully');
@@ -134,7 +127,7 @@ export default function SellerItemEditPage() {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="price">Price (₸)</label>
+              <label htmlFor="price">Starting Price (₸)</label>
               <input
                 type="text"
                 className="w-full"
@@ -187,22 +180,7 @@ export default function SellerItemEditPage() {
                 <div className="text-red-500">{errors.category.message}</div>
               )}
             </div>
-            <div className="mb-4">
-              <label htmlFor="countInStock">Count In Stock</label>
-              <input
-                type="text"
-                className="w-full"
-                id="countInStock"
-                {...register('countInStock', {
-                  required: 'Please enter countInStock',
-                })}
-              />
-              {errors.countInStock && (
-                <div className="text-red-500">
-                  {errors.countInStock.message}
-                </div>
-              )}
-            </div>
+
             <div className="mb-4">
               <label htmlFor="countInStock">Description</label>
               <input
@@ -219,7 +197,7 @@ export default function SellerItemEditPage() {
             </div>
             <div className="mb-4">
               <button disabled={loadingUpdate} className="primary-button">
-                {loadingUpdate ? 'Loading' : 'Create Item'}
+                {loadingUpdate ? 'Loading' : 'Start Auction'}
               </button>
             </div>
             <div className="mb-4">

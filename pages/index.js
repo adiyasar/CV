@@ -33,7 +33,10 @@ export default function Home({ items, popularItems }) {
       <section className="header rounded shadow object-cover  w-full">
         <h1>NU Marketplace</h1>
         <p>Everything you might need in one click</p>
-        <a className="btn-bgstroke">Main Page</a>
+
+        <Link className="btn-bgstroke" href={`/auction/auctions`}>
+          Auction
+        </Link>
       </section>
 
       <Carousel
@@ -68,7 +71,7 @@ export async function getServerSideProps() {
   await db.connect();
   const products = await Product.find().lean();
   const popularItems = await Product.find({ popular: true }).lean();
-
+  await db.disconnect();
   return {
     props: {
       popularItems: popularItems.map(db.convertDocToObj),

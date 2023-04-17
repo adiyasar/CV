@@ -77,6 +77,12 @@ export default function CreateOrder() {
         deliveryPrice,
         totalPrice,
       });
+      const rec_update = await axios.put('/api/recs/update', {
+        items: cartItems,
+      });
+      console.log(rec_update);
+      // console.log('Updated tags:');
+      // console.log(rec_update);
       setLoading(false);
       dispatch({ type: 'CART_CLEAR_ITEMS' });
       Cookies.set(
