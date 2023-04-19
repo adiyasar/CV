@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { getSession } from 'next-auth/react';
 import Order from '../../../Data/Order_model';
 import db from '../../../utils/mongoDB';
@@ -29,6 +28,7 @@ const handler = async (req, res) => {
   const updateOrder = { $set: { 'sellers.$.sellerDelivered': true } };
   console.log('updateOrder:' + updateOrder);
   const result = await Order.updateOne(query, updateOrder);
+  console.log(result);
   const toUpdateOrder = await Order.findById(order_info);
   for (let seller of toUpdateOrder.sellers) {
     if (seller.sellerDelivered === false) {
